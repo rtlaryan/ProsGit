@@ -24,6 +24,11 @@ void opcontrol() {
 	pros::Motor backLeft(11, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor rightLift(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 	pros::Motor leftLift(6, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+
+	pros::ADIEncoder leftEncoder (1,2);
+	pros::ADIEncoder rightEncoder (3,4);
+	pros::ADIEncoder backEncoder (5,6);
+	
 	//Initialize Variables
 		//Chassis Variables
 		double x1 = 0;

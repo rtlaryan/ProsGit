@@ -1,4 +1,4 @@
-#include "testProject/include/main.h"
+#include "main.h"
 #include<iostream>
 #include<list>
 using namespace std;
