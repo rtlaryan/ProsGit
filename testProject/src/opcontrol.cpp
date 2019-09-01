@@ -55,11 +55,11 @@ void opcontrol() {
 
 		////CHASSIS
 		//Chassis Algorithem
-		frontRight = y1 - x1 - x2;
+/*	frontRight = y1 - x1 - x2;
 		backRight =  y1 - x1 + x2;
 		frontLeft = y1 + x1 + x2;
 		backLeft =  y1 + x1 - x2;
-
+*/
 
 		//DeadZone Algoritem
 		if(abs(master.get_analog(ANALOG_LEFT_Y)) > threshold) y1 = master.get_analog(ANALOG_LEFT_Y);
@@ -70,6 +70,39 @@ void opcontrol() {
 
 		if(abs(master.get_analog(ANALOG_RIGHT_X)) > threshold) x2 = ANALOG_RIGHT_X;
 		else x2 = 0;
+
+		//Chassis Debugging
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) chassisMultiplier = 2;
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) chassisMultiplier = 0.5;
+		else chassisMultiplier = 1;
+
+		chassisOutput = chassisConstant * chassisMultiplier;
+
+		if(master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
+			frontRight = chassisOutput;
+			frontLeft = chassisOutput;
+			backLeft = chassisOutput;
+			backRight = chassisOutput;
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
+			frontRight = -1*chassisOutput;
+			frontLeft = -1*chassisOutput;
+			backLeft = -1*chassisOutput;
+			backRight = -1*chassisOutput;
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
+			frontRight = chassisOutput;
+			frontLeft = -1*chassisOutput;
+			backLeft = chassisOutput;
+			backRight = -1*chassisOutput;
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)){
+			frontRight = -1*chassisOutput;
+			frontLeft = chassisOutput;
+			backLeft = -1*chassisOutput;
+			backRight = chassisOutput;
+		}
+
 
 		////LIFT CODE
 		//Lift P calculation
