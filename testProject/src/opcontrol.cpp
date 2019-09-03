@@ -28,7 +28,7 @@ void opcontrol() {
 	pros::ADIEncoder leftEncoder (1,2);
 	pros::ADIEncoder rightEncoder (3,4);
 	pros::ADIEncoder backEncoder (5,6);
-	
+
 	//Initialize Variables
 		//Chassis Variables
 		double x1 = 0;
@@ -106,6 +106,12 @@ void opcontrol() {
 			frontLeft = chassisOutput;
 			backLeft = -1*chassisOutput;
 			backRight = chassisOutput;
+		}
+		else{
+			frontRight = 0;
+			frontLeft = 0;
+			backLeft = 0;
+			backRight = 0;
 		}
 
 
